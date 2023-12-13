@@ -31,8 +31,8 @@ def st_points(points):
     for point in points:
         st.write(f"- {point}")
 
-def add_section_title(text):
-    st.markdown(f"##### {text}")
+def add_section_title(text, level=5):
+    st.markdown(f"{'#'*level} {text}")
 
 def add_tab_before(text, width_adjust=[0.01, 0.99], gap='small'):
     cols = st.columns(width_adjust, gap=gap)

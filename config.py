@@ -22,6 +22,8 @@ def set_css():
     with open(css_file) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+set_css()
+
 # --- PROFILE PIC ---
 profile_pic = Image.open(profile_pic)
 
