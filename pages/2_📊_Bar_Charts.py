@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import collections
-import numpy as np
 
 import sys
 sys.path.append('../')
