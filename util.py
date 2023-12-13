@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 
 from config import profile_pic
 from config import NAME, EMAIL, DESCRIPTION
@@ -8,7 +9,8 @@ def set_sidebar():
         profile_container = st.container()
         profile_container.image(profile_pic, width=100)
         profile_container.title(NAME)
-        profile_container.write("**Machine Learning | Artificial Intelligence | Data Science | Software Engineering | Web Development**")
+        tag_line = "\n\nMachine Learning | Artificial Intelligence | Data Science | Software Engineering | Web Development"
+        profile_container.write(tag_line)
         cols = profile_container.columns([0.49, 0.51], gap='small')
         with cols[0]:
             st.write(f"{EMAIL}")
@@ -40,3 +42,13 @@ def add_tab_before(text, width_adjust=[0.01, 0.99], gap='small'):
 def add_vertical_space(n_lines):
     for _ in range(n_lines):
         st.write("\n")
+
+def add_checkboxes_in_cols(labels, n_columns=4):
+    values = []
+    langs_lists = [labels[i::n_columns] for i in range(n_columns)]
+    cols = st.columns(5, gap='small')
+    for i in range(n_columns):
+        with cols[i]:
+            for lang in langs_lists[i]:
+                values.append(st.checkbox(lang, value=True))
+    return values

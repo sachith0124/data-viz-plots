@@ -1,8 +1,9 @@
-from matplotlib import pyplot as plt
-
 import streamlit as st
 from PIL import Image
 from pathlib import Path
+
+from matplotlib import pyplot as plt
+
 
 # --- PATH SETTINGS ---
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
@@ -26,3 +27,4 @@ profile_pic = Image.open(profile_pic)
 
 # -- SET PLOT STYLE --
 plt.style.use('seaborn-v0_8')
+plt.gcf().set_facecolor(st.get_option('theme.backgroundColor'))
