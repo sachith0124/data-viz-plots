@@ -7,21 +7,15 @@ from config import plt
 
 set_sidebar()
 
-#--- DENSITY PLOTS ---
+#--- REAL TIME CHARTS ---
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
-header.markdown('# Density Plots')
+header.markdown('# Real Time Charts')
 header.write("---")
 
-density_plots_tabs = st.tabs(['Histograms', 'Density Plots'])
-with density_plots_tabs[0]:
-    st.header('Histograms')
-    st.write('---')
-    
-    add_section_title("Coming Soon... 🔜")
-
-with density_plots_tabs[1]:
-    st.header('Density Plots')
+real_time_charts_tabs = st.tabs(['Real Time Charts'])
+with real_time_charts_tabs[0]:
+    st.header('Real Time Charts')
     st.write('---')
     
     add_section_title("Coming Soon... 🔜")

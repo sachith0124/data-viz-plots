@@ -7,33 +7,33 @@ from config import plt
 
 set_sidebar()
 
-#--- PIE CHARTS ---
+#--- LINE PLOTS ---
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
-header.markdown('# Pie Charts')
+header.markdown('# Line Plots')
 header.write("---")
 
-pie_charts_tabs = st.tabs(['Pie Charts', 'Donut Charts', 'Radial Charts', 'Sun Burst Charts'])
-with pie_charts_tabs[0]:
-    st.header('Pie Charts')
+line_plots_tabs = st.tabs(['Line Plots', 'Multi Line Graphs', 'Area Charts', 'Stacked Area Plots'])
+with line_plots_tabs[0]:
+    st.header('Line Plots')
     st.write('---')
     
     add_section_title("Coming Soon... 🔜")
 
-with pie_charts_tabs[1]:
-    st.header('Donut Charts')
+with line_plots_tabs[1]:
+    st.header('Multi Line Graphs')
     st.write('---')
     
     add_section_title("Coming Soon... 🔜")
 
-with pie_charts_tabs[2]:
-    st.header('Radial Charts')
+with line_plots_tabs[2]:
+    st.header('Area Charts')
     st.write('---')
     
     add_section_title("Coming Soon... 🔜")
     
-with pie_charts_tabs[3]:
-    st.header('Sun Burst Charts')
+with line_plots_tabs[3]:
+    st.header('Stacked Area Plots')
     st.write('---')
     
     add_section_title("Coming Soon... 🔜")

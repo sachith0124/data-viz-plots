@@ -7,21 +7,15 @@ from config import plt
 
 set_sidebar()
 
-#--- DENSITY PLOTS ---
+#--- GEOSPATIAL CHARTS ---
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
-header.markdown('# Density Plots')
+header.markdown('# Geospatial Charts')
 header.write("---")
 
-density_plots_tabs = st.tabs(['Histograms', 'Density Plots'])
-with density_plots_tabs[0]:
-    st.header('Histograms')
-    st.write('---')
-    
-    add_section_title("Coming Soon... 🔜")
-
-with density_plots_tabs[1]:
-    st.header('Density Plots')
+geospatial_charts_tabs = st.tabs(['Geospatial Charts'])
+with geospatial_charts_tabs[0]:
+    st.header('Geospatial Charts')
     st.write('---')
     
     add_section_title("Coming Soon... 🔜")
