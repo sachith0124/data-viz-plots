@@ -4,8 +4,6 @@ from pathlib import Path
 
 from matplotlib import pyplot as plt
 
-st.set_page_config(layout='wide')
-
 # --- PATH SETTINGS ---
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "styles" / "main.css"
