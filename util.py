@@ -52,3 +52,18 @@ def add_checkboxes_in_cols(labels, n_columns=4):
             for lang in langs_lists[i]:
                 values.append(st.checkbox(lang, value=True))
     return values
+
+def add_plot_title(plot_title, dataset_url='', notebook_url=''):
+    cols = st.columns([0.57, 0.13, 0.2], gap="small")
+    with cols[0]:
+        add_section_title(plot_title)
+    with cols[1]:
+        if dataset_url:
+            st.link_button(f"Dataset \t\t ↗️", f"{dataset_url}")
+    with cols[2]:
+        if notebook_url:
+            st.link_button(f"Jupyter Notebook \t\t ↗️", f"{notebook_url}")
+def add_plot_description(plot_description=''):
+    if plot_description:
+            with st.expander("Description", expanded=True):
+                st.write(f"{plot_description}")
