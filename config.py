@@ -10,6 +10,7 @@ css_file = current_dir / "styles" / "main.css"
 profile_pic = current_dir / "assets" / "profile-pic.png"
 
 # --- GENERAL SETTINGS ---
+PAGE_TITLE = 'Sachith - Data Viz.'
 PAGE_ICON = Image.open(profile_pic)
 NAME = "Sachith Kumar Janjirala"
 EMAIL = "sachith@tamu.com"
