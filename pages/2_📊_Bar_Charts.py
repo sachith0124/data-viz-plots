@@ -28,7 +28,7 @@ with bar_charts_tabs[0]:
     add_plot_title(
         plot_title='International Trade: \nTrade Balance as Imports and Exports from 1988 to 2021', 
         dataset_url='https://wits.worldbank.org/CountryProfile/en/Country/WLD/Year/2021/TradeFlow/EXPIMP/Partner/all/Product/Total#', 
-        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/verticalBarChart_WITSImportsExports.ipynb'
+        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/bar-chart_vertical_wits-imports-exports.ipynb'
     )
 
     #Load Data
@@ -76,7 +76,7 @@ with bar_charts_tabs[1]:
     add_plot_title(
         plot_title= 'Popular Programming Languages: Frequency Plot',
         dataset_url='https://raw.githubusercontent.com/CoreyMSchafer/code_snippets/master/Python/Matplotlib/02-BarCharts/data.csv', 
-        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/horizontalBarChart_ProgLanguages.ipynb'
+        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/bar-chart_horizontal_prog-languages.ipynb'
     )
     
     source_filepath = 'datasets/prog-langs.csv'
@@ -122,7 +122,7 @@ with bar_charts_tabs[2]:
     add_plot_title(
         plot_title='OECD Population by Year',
         dataset_url='https://stats.oecd.org/Index.aspx?DataSetCode=EDU_DEM#',
-        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/groupedBarChart_OECDPopulation.ipynb'
+        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/bar-chart_grouped_oecd-population.ipynb'
     )
 
     #Load data
