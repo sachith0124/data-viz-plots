@@ -128,12 +128,12 @@ with bar_charts_tabs[2]:
         countries = oecd_pop_df['Country'].unique()
         selected_country = st.selectbox('**Country:**', countries)
         oecd_pop_df = oecd_pop_df.query('Country == @selected_country').drop(['Country'], axis=1)
-    with cols[1]:
-        add_vertical_space(2)
-        #Add st.toogle to show gender ratio within each bars
-        show_gender = st.toggle('**Gender**', value=True)
-        selected_genders = ['Male', 'Female'] if show_gender else ['Total']
-        country_tot_pop = oecd_pop_df.query('Gender in @selected_genders')
+    # with cols[1]:
+    #     add_vertical_space(2)
+    #     #Add st.toogle to show gender ratio within each bars
+    #     show_gender = st.toggle('**Gender**', value=True)
+    #     selected_genders = ['Male', 'Female'] if show_gender else ['Total']
+    #     country_tot_pop = oecd_pop_df.query('Gender in @selected_genders')
     with cols[2]:
         #Add st.slider to set age group bin width: 1 to max(age)
         ages = range(0, 75)
@@ -160,7 +160,7 @@ with bar_charts_tabs[2]:
     ax = df_plot.plot(kind='bar', width=0.9, figsize=(10, 6), rot=45)
 
     ax.set_ylabel('Population')
-    ax.set_title('Grouped Bar Chart by Year and Age Group')
+    ax.set_title(f'Grouped Bar Chart by Year and Age Group for {selected_country}')
     y_ticks = ['1,000,000', '2,000,000', '3,0000,00', '4,000,000', '5,000,000', '6,000,000', '7,000,000', '8,000,000', '9,000,000', '10,000,000']
     ax.set_yticklabels(y_ticks)
 
