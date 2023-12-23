@@ -39,12 +39,13 @@ with bar_charts_tabs[0]:
     with cols[0]:
         #Add st.selectbox to select country
         countries = wits_imports_exports['Country'].unique()
-        selected_country = st.selectbox('**Country:**', countries, index=3)
+        default_index = np.where(wits_imports_exports['Country'].unique() == 'United States')[0][0]
+        selected_country = st.selectbox('**Country:**', countries, index=int(default_index))
         country_imports_exports = wits_imports_exports.query('Country == @selected_country').drop('Country', axis=1)
     
     with cols[2]:
         add_vertical_space(2)
-        show_imports_exports = st.toggle('Show Imports / Exports', value=False)
+        show_imports_exports = st.toggle('**Show Imports / Exports**', value=False)
 
     thousand_to_million_round2 = lambda n: np.round(n / 1000, 2)
     country_imports_exports['Export in US$ Millions'] = country_imports_exports['Export (US$ Thousand)'].apply(thousand_to_million_round2)
@@ -79,7 +80,7 @@ with bar_charts_tabs[1]:
         notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/bar-chart_horizontal_prog-languages.ipynb'
     )
     
-    source_filepath = 'datasets/prog-langs.csv'
+    source_filepath = 'datasets/prog-languages.csv'
     prog_langs_df = pd.read_csv(source_filepath)
 
     language_counter = collections.Counter()
@@ -207,7 +208,6 @@ with bar_charts_tabs[2]:
     # Plotting
     fig, ax = plt.subplots()
     ax = df_plot.plot(kind='bar', width=0.9, figsize=(10, 6), rot=45)
-
     ax.set_ylabel('Population')
     ax.set_title(f'Population by Year and Age Group for {selected_country}')
     y_ticks = ['1,000,000', '2,000,000', '3,0000,00', '4,000,000', '5,000,000', '6,000,000', '7,000,000', '8,000,000', '9,000,000', '10,000,000']
