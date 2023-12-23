@@ -82,6 +82,7 @@ with bar_charts_tabs[2]:
     oecd_pop_df = pd.read_csv(source_filepath)
     cols_of_interest = ['Country', 'Gender', 'Age', 'Year', 'Value']
     oecd_pop_df = oecd_pop_df[cols_of_interest]
+    oecd_pop_df = oecd_pop_df[oecd_pop_df['Gender'] == 'Total']
 
     def create_age_groups(group_age_by):
         reference_age = 65
@@ -122,19 +123,13 @@ with bar_charts_tabs[2]:
             if col_name in key:
                 return label
 
-    cols = st.columns([0.2, 0.2, 0.6], gap='medium')
+    cols = st.columns([0.2, 0.6, 0.2], gap='medium')
     with cols[0]:
         #Add st.selectbox to select country
         countries = oecd_pop_df['Country'].unique()
         selected_country = st.selectbox('**Country:**', countries)
         oecd_pop_df = oecd_pop_df.query('Country == @selected_country').drop(['Country'], axis=1)
-    # with cols[1]:
-    #     add_vertical_space(2)
-    #     #Add st.toogle to show gender ratio within each bars
-    #     show_gender = st.toggle('**Gender**', value=True)
-    #     selected_genders = ['Male', 'Female'] if show_gender else ['Total']
-    #     country_tot_pop = oecd_pop_df.query('Gender in @selected_genders')
-    with cols[2]:
+    with cols[1]:
         #Add st.slider to set age group bin width: 1 to max(age)
         ages = range(0, 75)
         group_age_by = st.select_slider('**Group Age by Yrs:**', value=20, options=[5, 10, 15, 20, 25])
@@ -146,15 +141,20 @@ with bar_charts_tabs[2]:
 
         get_nums = lambda str: tuple([int(match) for match in re.findall(r'\d+', str)])
         oecd_pop_df['tempAge'] = oecd_pop_df['Age'].apply(get_nums)
+    with cols[2]:
+        #Add st.toogle to enable or disable population before 65 years
+        add_vertical_space(2)
+        include_65_above = st.toggle('**65 yrs above**', value=True)
+        if not include_65_above:
+            oecd_pop_df = oecd_pop_df[oecd_pop_df['tempAge'] != (65,)]
         oecd_pop_df = oecd_pop_df.sort_values(['Year', 'tempAge'])
 
         ages_list = oecd_pop_df['Age'].unique()
 
-        #Groupby
-        oecd_pop_df = oecd_pop_df.groupby(['Year', 'tempAge', 'Age'])['Value'].sum()
-        oecd_pop_df = oecd_pop_df.sort_index(level=[0, 1]).droplevel('Age')
-
+    oecd_pop_df = oecd_pop_df.groupby(['Year', 'tempAge', 'Age'])['Value'].sum()
+    oecd_pop_df = oecd_pop_df.sort_index(level=[0, 1]).droplevel('Age')
     df_plot = oecd_pop_df.unstack().sort_index(level=1, axis=1)
+
     # Plotting
     fig, ax = plt.subplots()
     ax = df_plot.plot(kind='bar', width=0.9, figsize=(10, 6), rot=45)
