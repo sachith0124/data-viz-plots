@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import collections
 import seaborn as sns
 import re
@@ -18,18 +19,66 @@ header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 header.markdown('# Bar Charts')
 header.write("---")
-
 bar_charts_tabs = st.tabs(['Vertical', 'Horizontal', 'Grouped'])
+
 with bar_charts_tabs[0]:
     st.header('Vertical Bar Charts')
     st.write('---')
+    #Add Title
+    add_plot_title(
+        plot_title='International Trade: \nTrade Balance as Imports and Exports from 1988 to 2021', 
+        dataset_url='https://wits.worldbank.org/CountryProfile/en/Country/WLD/Year/2021/TradeFlow/EXPIMP/Partner/all/Product/Total#', 
+        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/verticalBarChart_WITSImportsExports.ipynb'
+    )
+
+    #Load Data
+    wits_imports_exports = pd.read_csv('datasets/wits-imports-exports.csv')
     
-    add_section_title("Coming Soon... 🔜")
+
+    cols = st.columns([0.3, 0.4, 0.3], gap='medium')
+    with cols[0]:
+        #Add st.selectbox to select country
+        countries = wits_imports_exports['Country'].unique()
+        selected_country = st.selectbox('**Country:**', countries, index=3)
+        country_imports_exports = wits_imports_exports.query('Country == @selected_country').drop('Country', axis=1)
+    
+    with cols[2]:
+        add_vertical_space(2)
+        show_imports_exports = st.toggle('Show Imports / Exports', value=False)
+
+    thousand_to_million_round2 = lambda n: np.round(n / 1000, 2)
+    country_imports_exports['Export in US$ Millions'] = country_imports_exports['Export (US$ Thousand)'].apply(thousand_to_million_round2)
+    country_imports_exports.drop('Export (US$ Thousand)', axis=1, inplace=True)
+    country_imports_exports['Import in US$ Millions'] = country_imports_exports['Import (US$ Thousand)'].apply(thousand_to_million_round2)
+    country_imports_exports.drop('Import (US$ Thousand)', axis=1, inplace=True)
+
+    new_df = pd.DataFrame(columns=['Year', 'Export or Import', 'Value in US$ Millions'])
+    for year in country_imports_exports['Year']:
+        export_value = country_imports_exports.query('Year == @year')['Export in US$ Millions'].iloc[0]
+        import_value = -country_imports_exports.query('Year == @year')['Import in US$ Millions'].iloc[0]
+        trade_value = export_value + import_value
+
+        export_row = {'Year': year, 'Export or Import': 'Export', 'Value in US$ Millions': export_value, 'Trade Balance':trade_value}
+        import_row = {'Year': year, 'Export or Import': 'Import', 'Value in US$ Millions': import_value, 'Trade Balance':trade_value}
+        
+        new_df = pd.concat([new_df, pd.DataFrame([export_row, import_row])])
+
+    if show_imports_exports:
+        st.bar_chart(new_df, x='Year', y='Value in US$ Millions', color='Export or Import', use_container_width=True)
+    else:
+        st.bar_chart(new_df, x='Year', y='Trade Balance')
+
 
 with bar_charts_tabs[1]:
     st.header('Horizontal Bar Charts')
     st.write('---')
-    add_section_title('Popular Programming Languages: Frequency Plot')
+
+    add_plot_title(
+        plot_title= 'Popular Programming Languages: Frequency Plot',
+        dataset_url='https://raw.githubusercontent.com/CoreyMSchafer/code_snippets/master/Python/Matplotlib/02-BarCharts/data.csv', 
+        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/horizontalBarChart_ProgLanguages.ipynb'
+    )
+    
     source_filepath = 'datasets/prog-langs.csv'
     prog_langs_df = pd.read_csv(source_filepath)
 
@@ -127,12 +176,12 @@ with bar_charts_tabs[2]:
     with cols[0]:
         #Add st.selectbox to select country
         countries = oecd_pop_df['Country'].unique()
-        selected_country = st.selectbox('**Country:**', countries)
+        selected_country = st.selectbox('**Country:**', countries, index=3)
         oecd_pop_df = oecd_pop_df.query('Country == @selected_country').drop(['Country'], axis=1)
     with cols[1]:
         #Add st.slider to set age group bin width: 1 to max(age)
         ages = range(0, 75)
-        group_age_by = st.select_slider('**Group Age by Yrs:**', value=20, options=[5, 10, 15, 20, 25])
+        group_age_by = st.select_slider('**Group Age by Yrs:**', value=10, options=[5, 10, 15, 20, 25])
         
         #preprocessing for groupby step
         age_groups = list(create_age_groups(group_age_by).values())
@@ -144,7 +193,7 @@ with bar_charts_tabs[2]:
     with cols[2]:
         #Add st.toogle to enable or disable population before 65 years
         add_vertical_space(2)
-        include_65_above = st.toggle('**65 yrs above**', value=True)
+        include_65_above = st.toggle('**65 yrs above**', value=False)
         if not include_65_above:
             oecd_pop_df = oecd_pop_df[oecd_pop_df['tempAge'] != (65,)]
         oecd_pop_df = oecd_pop_df.sort_values(['Year', 'tempAge'])
