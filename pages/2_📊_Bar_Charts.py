@@ -59,15 +59,15 @@ with bar_charts_tabs[0]:
         import_value = -country_imports_exports.query('Year == @year')['Import in US$ Millions'].iloc[0]
         trade_value = export_value + import_value
 
-        export_row = {'Year': year, 'Export or Import': 'Export', 'Value in US$ Millions': export_value, 'Trade Balance':trade_value}
-        import_row = {'Year': year, 'Export or Import': 'Import', 'Value in US$ Millions': import_value, 'Trade Balance':trade_value}
+        export_row = {'Year': year, 'Export or Import': 'Export', 'Value in US$ Millions': export_value, 'Trade Balance in US$ Millions':trade_value}
+        import_row = {'Year': year, 'Export or Import': 'Import', 'Value in US$ Millions': import_value, 'Trade Balance in US$ Millions':trade_value}
         
         new_df = pd.concat([new_df, pd.DataFrame([export_row, import_row])])
 
     if show_imports_exports:
         st.bar_chart(new_df, x='Year', y='Value in US$ Millions', color='Export or Import', use_container_width=True)
     else:
-        st.bar_chart(new_df, x='Year', y='Trade Balance')
+        st.bar_chart(new_df, x='Year', y='Trade Balance in US$ Millions')
 
 
 with bar_charts_tabs[1]:
