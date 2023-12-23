@@ -137,7 +137,7 @@ with bar_charts_tabs[2]:
     with cols[2]:
         #Add st.slider to set age group bin width: 1 to max(age)
         ages = range(0, 75)
-        group_age_by = st.select_slider('**Group Age by Yrs:**', value=15, options=[5, 10, 15, 20])
+        group_age_by = st.select_slider('**Group Age by Yrs:**', value=20, options=[5, 10, 15, 20, 25])
         
         #preprocessing for groupby step
         age_groups = list(create_age_groups(group_age_by).values())
