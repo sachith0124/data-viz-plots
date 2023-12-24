@@ -45,7 +45,7 @@ with bar_charts_tabs[0]:
     
     with cols[2]:
         add_vertical_space(2)
-        show_imports_exports = st.toggle('**Show Imports / Exports**', value=False)
+        show_imports_exports = st.toggle('**Show Imports / Exports**', value=True)
 
     thousand_to_million_round2 = lambda n: np.round(n / 1000, 2)
     country_imports_exports['Export in US$ Millions'] = country_imports_exports['Export (US$ Thousand)'].apply(thousand_to_million_round2)
