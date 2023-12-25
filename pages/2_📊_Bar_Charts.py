@@ -2,16 +2,19 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import collections
-import seaborn as sns
 import re
 
 import sys
 sys.path.append('../')
+
 from util import set_sidebar, add_section_title, add_plot_title, add_vertical_space
 from config import plt
 
+from config import PAGE_TITLE, PAGE_ICON
+st.set_page_config(page_icon=PAGE_ICON, page_title=f'{PAGE_TITLE} - Bar Charts', layout='wide')
 set_sidebar()
 
+import seaborn as sns
 sns.set()
 
 #--- BAR CHARTS ---
