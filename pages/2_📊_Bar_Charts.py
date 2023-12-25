@@ -213,7 +213,7 @@ with bar_charts_tabs[2]:
     ax = df_plot.plot(kind='bar', width=0.9, figsize=(10, 6), rot=45)
     ax.set_ylabel('Population')
     ax.set_title(f'Population by Year and Age Group for {selected_country}')
-    y_ticks = ['1,000,000', '2,000,000', '3,0000,00', '4,000,000', '5,000,000', '6,000,000', '7,000,000', '8,000,000', '9,000,000', '10,000,000']
+    y_ticks = ['1,000,000', '2,000,000', '3,000,000', '4,000,000', '5,000,000', '6,000,000', '7,000,000', '8,000,000', '9,000,000', '10,000,000']
     ax.set_yticklabels(y_ticks)
 
     # Adding legend
