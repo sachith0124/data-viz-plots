@@ -17,9 +17,8 @@ sns.set()
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 header.markdown('# Network Graphs')
-header.write("---")
-
 network_graphs_tabs = st.tabs(['Network Graphs'])
+
 with network_graphs_tabs[0]:
     st.header('Network Graphs')
     st.write('---')

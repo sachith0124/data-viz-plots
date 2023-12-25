@@ -19,9 +19,8 @@ set_sidebar()
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 header.markdown('# Pie Charts')
-header.write("---")
-
 pie_charts_tabs = st.tabs(['Pie Charts', 'Donut Charts', 'Radial Charts', 'Sun Burst Charts'])
+
 with pie_charts_tabs[0]:
     st.header('Pie Charts')
     st.write('---')

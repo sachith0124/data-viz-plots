@@ -19,9 +19,8 @@ sns.set()
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 header.markdown('# Scatter Plots')
-header.write("---")
-
 scatter_plots_tabs = st.tabs(["Scatter Plots", "Bubble Plots"])
+
 with scatter_plots_tabs[0]:
     st.header('Scatter Plots')
     st.write('---')

@@ -21,7 +21,6 @@ sns.set()
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 header.markdown('# Bar Charts')
-header.write("---")
 bar_charts_tabs = st.tabs(['Vertical', 'Horizontal', 'Grouped'])
 
 with bar_charts_tabs[0]:

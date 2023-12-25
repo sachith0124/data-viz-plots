@@ -17,9 +17,8 @@ sns.set()
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 header.markdown('# Line Plots')
-header.write("---")
-
 line_plots_tabs = st.tabs(['Line Plots', 'Multi Line Graphs', 'Area Charts', 'Stacked Area Plots'])
+
 with line_plots_tabs[0]:
     st.header('Line Plots')
     st.write('---')

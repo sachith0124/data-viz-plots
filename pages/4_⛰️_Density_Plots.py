@@ -17,9 +17,8 @@ sns.set()
 header = st.container()
 header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
 header.markdown('# Density Plots')
-header.write("---")
-
 density_plots_tabs = st.tabs(['Histograms', 'Density Plots'])
+
 with density_plots_tabs[0]:
     st.header('Histograms')
     st.write('---')
