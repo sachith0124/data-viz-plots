@@ -35,7 +35,7 @@ with scatter_plots_tabs[1]:
     add_plot_title(
         plot_title='Beta Fish: Price vs Size by Sex and Color',
         dataset_url='https://github.com/sachith0124/data-viz-plots/blob/main/datasets/beta-fish.csv',
-        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/bubble_plot.ipynb'
+        notebook_url='https://github.com/sachith0124/data-viz-plots/blob/main/notebooks/scatter-plot_bubbleplot_beta-fish.ipynb'
     )
     
     source_filepath = 'datasets/beta-fish.csv'
